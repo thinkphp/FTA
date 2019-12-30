@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fundamental Theorem Of Arithmetic</title>
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+h1 {color: green}
+body, html, input, button {font-size: 30px}
+</style>
+</head>
+<body>
+
+<h1>Fundamental Theorem of Arithmetic.</h1>
+<p>Unique-prime-factorization theorem, states that every integer greater than 1 either is a prime number itself or can be represented as the product of prime numbers</p>
+
+<input id="myInput" value="" autocomplete="off">
+<button id="myBtn">Do it</button>
+<div id="output"></div>
+
+<script>
+var $ = function(id) { return document.getElementById(id) }
+
+var input = $("myInput"),
+
+    btn = $("myBtn"),
+    
+    output = $("output");
+  
+btn.addEventListener("click", function(event) {
+
+    var inp = $("myInput").value;
+    
+        var numbers = Array.from(inp.split(" "));
+        
+            output.innerHTML = "<br>"
+                
+            numbers.forEach(function(val){
+            
+                    var n = parseInt(val),
+
+                        fm , i = 2;                        
+
+                        output.innerHTML += val + " = "
+
+                        var str = "";
+
+                        do {
+
+                            fm = 0;
+
+                             while(n % i == 0) {
+
+                                fm = fm + 1;
+
+                                n = parseInt(n / i)
+                             }
+
+                             if(fm!=0) str += i + "^" + fm + " * ";
+
+                             i = i + 1;   
+
+                        } while(n != 1)
+
+                        str = str.slice(0, -2);
+
+                        output.innerHTML += str +  "<hr/>"                    
+            });
+        
+});
+
+input.addEventListener("keyup", function(event) {
+
+  if (event.keyCode === 13) {
+
+      event.preventDefault();
+
+      document.getElementById("myBtn").click();
+  }
+});
+
+</script>
+<p>Created by <a href="http://thinkphp.ro">Adrian Statescu</a></>
+</body>
+</html>
